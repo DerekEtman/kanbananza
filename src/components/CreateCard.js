@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class CreateCard extends Component {
+class createCard extends Component {
   state = {
     title: '',
     description: '',
@@ -25,10 +25,10 @@ class CreateCard extends Component {
 
     if (this.isInvalid) return;
 
-    const { onCreateCard } = this.props;
+    const { createCard, listId } = this.props;
 
-    if (onCreateCard) {
-      onCreateCard(this.state);
+    if (createCard) {
+      createCard(listId ,this.state);
     }
 
     this.setState({
@@ -41,9 +41,9 @@ class CreateCard extends Component {
     const { title, description } = this.state;
 
     return (
-      <form className="CreateCard" onSubmit={this.handleSubmit}>
+      <form className="createCard" onSubmit={this.handleSubmit}>
         <input
-          className="CreateCard-title"
+          className="createCard-title"
           onChange={this.handleChange}
           name="title"
           placeholder="Title"
@@ -51,7 +51,7 @@ class CreateCard extends Component {
           value={title}
         />
         <input
-          className="CreateCard-description"
+          className="createCard-description"
           onChange={this.handleChange}
           placeholder="Description"
           name="description"
@@ -59,7 +59,7 @@ class CreateCard extends Component {
           value={description}
         />
         <input
-          className="CreateCard-submit"
+          className="createCard-submit"
           type="submit"
           value="Create New Card"
           disabled={this.isInvalid}
@@ -69,4 +69,4 @@ class CreateCard extends Component {
   }
 }
 
-export default CreateCard;
+export default createCard;
