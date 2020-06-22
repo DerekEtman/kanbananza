@@ -1,21 +1,16 @@
 import { lists as defaultLists } from '../normalized-state';
+import { addIdToChildren, addEntity } from './_utilities';
+
 
 const listsReducer = (lists = defaultLists, action) => {
   if (action.type === 'CARD_CREATE') {
     const { cardId, listId } = action.payload;
-    const entities = { ...lists.entities };
-    
-    entities[listId] = {
-      ...entities[listId],
-      cards: entities[listId].cards.concat(cardId),
-    };
-
-    return {
-      ...lists,
-      entities,
-    };
+    return addIdToChildren(lists,listId,'cards',cardId);
   }
-  console.log(lists, action);
+  if(action.type === "LIST_CREATE"){
+    const {list, listId} = action.payload;
+    return addEntity(lists,list, listId)
+  }
   return lists;
 };
 
